@@ -5,6 +5,8 @@ import { publicProcedure, router } from "./_core/trpc";
 import { adminRouter } from "./adminRouter";
 import { reviewsRouter } from "./reviewsRouter";
 import { postsRouter } from "./postsRouter";
+import { uploadRouter } from "./uploadRouter";
+import { mediaRouter } from "./mediaRouter";
 
 export const appRouter = router({
   system: systemRouter,
@@ -23,6 +25,8 @@ export const appRouter = router({
   admin: adminRouter,
   reviews: reviewsRouter,
   posts: postsRouter,
+  upload: uploadRouter,
+  media: mediaRouter,
 
   // TODO: add feature routers here, e.g.
   // todo: router({

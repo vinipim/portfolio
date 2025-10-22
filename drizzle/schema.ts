@@ -76,3 +76,23 @@ export const reviews = mysqlTable("reviews", {
 
 export type Review = typeof reviews.$inferSelect;
 export type InsertReview = typeof reviews.$inferInsert;
+
+/**
+ * Media files table for images, videos, and documents
+ */
+export const media = mysqlTable("media", {
+  id: varchar("id", { length: 64 }).primaryKey(),
+  filename: varchar("filename", { length: 255 }).notNull(),
+  fileType: mysqlEnum("fileType", ["image", "video", "document"]).notNull(),
+  contentType: varchar("contentType", { length: 100 }).notNull(),
+  size: int("size").notNull(),
+  storageKey: varchar("storageKey", { length: 500 }).notNull(),
+  url: text("url").notNull(),
+  thumbnail: text("thumbnail"),
+  createdAt: timestamp("createdAt").defaultNow(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
+  userId: varchar("userId", { length: 64 }),
+});
+
+export type Media = typeof media.$inferSelect;
+export type InsertMedia = typeof media.$inferInsert;

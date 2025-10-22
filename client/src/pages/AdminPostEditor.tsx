@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Save, Eye } from "lucide-react";
-import MediaUpload from "@/components/MediaUpload";
+import MediaUploadV2 from "@/components/MediaUploadV2";
 
 /**
  * Admin Post Editor
@@ -50,15 +50,8 @@ export default function AdminPostEditor() {
     }
   };
 
-  const handleImageUpload = async (file: File): Promise<string> => {
-    // Simulate upload - Replace with actual S3 upload
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const url = URL.createObjectURL(file);
-        setFormData(prev => ({ ...prev, coverImage: url }));
-        resolve(url);
-      }, 1500);
-    });
+  const handleImageUpload = (url: string) => {
+    setFormData(prev => ({ ...prev, coverImage: url }));
   };
 
   const createPostMutation = trpc.posts.create.useMutation();
@@ -238,12 +231,13 @@ export default function AdminPostEditor() {
           </Card>
 
           {/* Cover Image */}
-          <MediaUpload
+          <MediaUploadV2
             type="image"
             onUpload={handleImageUpload}
             currentUrl={formData.coverImage}
             title="Cover Image"
             description="Upload a cover image for this post (recommended: 1200x630px)"
+            maxSize={10}
           />
 
           {/* Content */}

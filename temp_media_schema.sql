@@ -1,0 +1,15 @@
+-- Media files table
+CREATE TABLE IF NOT EXISTS media (
+  id VARCHAR(64) PRIMARY KEY,
+  filename VARCHAR(255) NOT NULL,
+  fileType ENUM('image', 'video', 'document') NOT NULL,
+  contentType VARCHAR(100) NOT NULL,
+  size INT NOT NULL,
+  storageKey VARCHAR(500) NOT NULL,
+  url TEXT NOT NULL,
+  thumbnail TEXT,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  userId VARCHAR(64)
+);
+
