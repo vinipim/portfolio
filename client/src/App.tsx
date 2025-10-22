@@ -10,8 +10,15 @@ import Posts from "./pages/Posts";
 import PostDetail from "./pages/PostDetail";
 import Archive from "./pages/Archive";
 import Contact from "./pages/Contact";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import Books from "./pages/Books";
+import Films from "./pages/Films";
+import Audio from "./pages/Audio";
+import Video from "./pages/Video";
 
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />
@@ -20,6 +27,12 @@ function Router() {
       <Route path="/posts/:slug" component={PostDetail} />
       <Route path="/archive" component={Archive} />
       <Route path="/contact" component={Contact} />
+      <Route path="/books" component={Books} />
+      <Route path="/films" component={Films} />
+      <Route path="/audio" component={Audio} />
+      <Route path="/video" component={Video} />
+      <Route path="/admin" component={AdminLogin} />
+      <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

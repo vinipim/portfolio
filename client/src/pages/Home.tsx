@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import PostCard from "@/components/PostCard";
 import { Button } from "@/components/ui/button";
 import { getFeaturedPosts, Post } from "@/lib/posts";
+import { useAuth } from "@/_core/hooks/useAuth";
 
 /**
  * Home Page
@@ -13,6 +14,10 @@ import { getFeaturedPosts, Post } from "@/lib/posts";
  * - Botão "Ver todos os posts"
  */
 export default function Home() {
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  let { user, loading: authLoading, error, isAuthenticated, logout } = useAuth();
+
   const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,7 +44,7 @@ export default function Home() {
         <div 
           className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary/70"
           style={{
-            backgroundImage: "url('/images/hero-bg.jpg')", // {replace with your content}
+            backgroundImage: "url('/images/hero-library.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundBlendMode: "overlay",
@@ -49,7 +54,7 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 container text-center text-primary-foreground px-6">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
-            Vijicius
+            Vinicius M. Blanchard
           </h1>
           <p className="text-xl md:text-2xl lg:text-3xl font-light mb-4">
             Law student & politics enthusiast
