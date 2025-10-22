@@ -42,7 +42,7 @@ export default function PostDetail() {
 
         // SEO: Atualizar título da página
         if (postData) {
-          document.title = `${postData.title} | Vijicius`;
+          document.title = `${postData.title} | Vinicius`;
         }
       } catch (error) {
         console.error("Erro ao carregar post:", error);

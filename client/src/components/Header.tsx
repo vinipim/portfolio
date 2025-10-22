@@ -1,5 +1,5 @@
-import { Menu, Search, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { Menu, Search, X, ChevronDown } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "wouter";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -15,6 +15,7 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLibraryOpen, setIsLibraryOpen] = useState(false);
+  const libraryTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const navigationLinks = [
     { href: "/", label: "Home" },
@@ -32,6 +33,27 @@ export default function Header() {
     },
     { href: "/contact", label: "Contact" },
   ];
+
+  const handleLibraryEnter = () => {
+    if (libraryTimeoutRef.current) {
+      clearTimeout(libraryTimeoutRef.current);
+    }
+    setIsLibraryOpen(true);
+  };
+
+  const handleLibraryLeave = () => {
+    libraryTimeoutRef.current = setTimeout(() => {
+      setIsLibraryOpen(false);
+    }, 200); // 200ms delay before closing
+  };
+
+  useEffect(() => {
+    return () => {
+      if (libraryTimeoutRef.current) {
+        clearTimeout(libraryTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card border-b border-border shadow-sm">
@@ -77,10 +99,10 @@ export default function Header() {
           <div className="flex-1 lg:flex-none flex justify-center lg:justify-start">
             <Link href="/">
               <a className="flex items-center gap-3 group">
-                <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-serif font-bold text-xl lg:text-2xl group-hover:bg-accent group-hover:text-accent-foreground transition-smooth">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl lg:text-2xl group-hover:bg-accent group-hover:text-accent-foreground transition-smooth">
                   V
                 </div>
-                <span className="font-serif text-lg lg:text-2xl font-semibold tracking-tight hidden sm:block">
+                <span className="text-lg lg:text-2xl font-semibold tracking-tight hidden sm:block">
                   Vinicius M. Blanchard
                 </span>
               </a>
@@ -90,27 +112,34 @@ export default function Header() {
           {/* Desktop navigation */}
           <nav className="hidden lg:flex items-center gap-8 flex-1 justify-center">
             {navigationLinks.map((link) => (
-              <div key={link.href} className="relative group">
+              <div key={link.href} className="relative">
                 {link.submenu ? (
                   <div
-                    onMouseEnter={() => setIsLibraryOpen(true)}
-                    onMouseLeave={() => setIsLibraryOpen(false)}
+                    onMouseEnter={handleLibraryEnter}
+                    onMouseLeave={handleLibraryLeave}
+                    className="relative"
                   >
-                    <button className="flex items-center gap-1 text-sm font-medium uppercase tracking-wider hover:text-accent transition-smooth">
+                    <button className="flex items-center gap-1 text-sm font-medium uppercase tracking-wider hover:text-accent transition-smooth py-2">
                       {link.label}
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className={`h-4 w-4 transition-transform ${isLibraryOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    {isLibraryOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-lg py-2">
+                    
+                    {/* Dropdown menu with improved hover area */}
+                    <div 
+                      className={`absolute top-full left-0 pt-2 transition-all duration-200 ${
+                        isLibraryOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+                      }`}
+                    >
+                      <div className="w-56 bg-card border border-border rounded-lg shadow-xl py-2 overflow-hidden">
                         {link.submenu.map((sublink) => (
                           <Link key={sublink.href} href={sublink.href}>
-                            <a className="block px-4 py-2 text-sm hover:bg-secondary hover:text-accent transition-smooth">
+                            <a className="block px-5 py-3 text-sm hover:bg-secondary hover:text-accent transition-all">
                               {sublink.label}
                             </a>
                           </Link>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </div>
                 ) : (
                   <Link href={link.href}>
@@ -142,6 +171,10 @@ export default function Header() {
                       setIsSearchOpen(false);
                       setSearchQuery("");
                     }
+                    if (e.key === "Enter" && searchQuery) {
+                      // Implement search functionality here
+                      console.log("Searching for:", searchQuery);
+                    }
                   }}
                 />
                 <Button
@@ -153,7 +186,7 @@ export default function Header() {
                   }}
                   className="hover:bg-secondary"
                 >
-                  <span className="text-sm">✕</span>
+                  <X className="h-5 w-5" />
                 </Button>
               </div>
             ) : (

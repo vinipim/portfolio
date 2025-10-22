@@ -76,7 +76,7 @@ export default function Posts() {
               Todos os Posts
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Explore artigos, análises e reflexões sobre direito e política
+              Explore articles, analysis and reflections on politics
             </p>
           </div>
 
@@ -96,7 +96,7 @@ export default function Posts() {
                   onChange={(e) => setSelectedCategory(e.target.value)}
                   className="w-full px-4 py-2 border border-input rounded bg-background focus:outline-none focus:ring-2 focus:ring-ring"
                 >
-                  <option value="all">Todas as categorias</option>
+                  <option value="all">All categories</option>
                   {categories.map((category) => (
                     <option key={category.slug} value={category.name}>
                       {category.name} ({category.count})
@@ -152,7 +152,7 @@ export default function Posts() {
           ) : (
             <div className="text-center py-16">
               <p className="text-muted-foreground text-lg mb-4">
-                Nenhum post encontrado com os filtros selecionados.
+                No posts found com os filtros selecionados.
               </p>
               <Button onClick={resetFilters} variant="outline">
                 Limpar filtros

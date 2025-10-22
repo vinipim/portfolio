@@ -98,7 +98,7 @@ Se quiser ajustar as cores:
 
 1. Acesse https://www.notion.so/my-integrations
 2. Clique em "New integration"
-3. Dê um nome (ex: "Portfolio Vijicius")
+3. Dê um nome (ex: "Portfolio Vinicius")
 4. Copie o "Internal Integration Token"
 5. No seu banco de dados, clique nos três pontos → "Add connections" → Selecione sua integração
 

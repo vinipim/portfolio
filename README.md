@@ -1,4 +1,4 @@
-# Portfólio Vijicius
+# Portfólio Vinicius
 
 Site de portfólio pessoal profissional e minimalista para estudante de Direito interessado em política.
 
@@ -227,7 +227,7 @@ Para melhorar o SEO em produção:
 2. Adicione meta tags em cada página:
    ```tsx
    <Helmet>
-     <title>{post.title} | Vijicius</title>
+     <title>{post.title} | Vinicius</title>
      <meta name="description" content={post.excerpt} />
      <meta property="og:title" content={post.title} />
      <meta property="og:image" content={post.coverImage} />
@@ -262,5 +262,5 @@ Este é um projeto pessoal, mas sugestões são bem-vindas!
 
 ---
 
-Desenvolvido com ❤️ por Vijicius
+Desenvolvido com ❤️ por Vinicius
 

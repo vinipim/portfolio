@@ -121,7 +121,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit...
 Portanto, é fundamental que...`,
     featured: true,
     coverImage: "/images/posts/constitutional-law.jpg", // {replace with your content}
-    author: "Vijicius",
+    author: "Vinicius",
     tags: ["direito", "constituição", "democracia"],
   },
   {
@@ -143,7 +143,7 @@ A política externa brasileira tem raízes profundas...
 Nos últimos anos, observamos...`,
     featured: true,
     coverImage: "/images/posts/foreign-policy.jpg", // {replace with your content}
-    author: "Vijicius",
+    author: "Vinicius",
     tags: ["política", "relações internacionais", "diplomacia"],
   },
   {
@@ -155,7 +155,7 @@ Nos últimos anos, observamos...`,
     content: `{replace with your content}`,
     featured: false,
     coverImage: "/images/posts/political-reform.jpg", // {replace with your content}
-    author: "Vijicius",
+    author: "Vinicius",
     tags: ["política", "reforma", "democracia"],
   },
   {
@@ -166,7 +166,7 @@ Nos últimos anos, observamos...`,
     excerpt: "Os desafios e avanços na proteção dos direitos humanos em um mundo cada vez mais conectado.",
     content: `{replace with your content}`,
     featured: false,
-    author: "Vijicius",
+    author: "Vinicius",
     tags: ["direitos humanos", "direito internacional"],
   },
 ];

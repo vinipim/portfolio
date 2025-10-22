@@ -5,8 +5,8 @@ import { Mail, Send } from "lucide-react";
 
 /**
  * Contact Page
- * - Formulário simples (nome, email, mensagem)
- * - Ícones de redes sociais (Substack, Twitter, Instagram)
+ * - Simple form (nome, email, mensagem)
+ * - Social media icons (Substack, Twitter, Instagram)
  * 
  * INTEGRAÇÃO COM SERVIÇO DE EMAIL:
  * 
@@ -69,11 +69,11 @@ export default function Contact() {
 
       // Simulação para demonstração (remova em produção)
       await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Dados do formulário:", formData);
+      console.log("Form data:", formData);
       setSubmitStatus("success");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error("Erro ao enviar formulário:", error);
+      console.error("Error sending form:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -117,7 +117,7 @@ export default function Contact() {
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl lg:text-5xl font-serif font-semibold mb-4">
-              Contato
+              Contact
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Entre em contato ou conecte-se nas redes sociais
@@ -133,10 +133,10 @@ export default function Contact() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Nome */}
+                {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-2">
-                    Nome
+                    Name
                   </label>
                   <input
                     type="text"
@@ -167,10 +167,10 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Mensagem */}
+                {/* Message */}
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Mensagem
+                    Message
                   </label>
                   <textarea
                     id="message"
@@ -187,7 +187,7 @@ export default function Contact() {
                 {/* Status de envio */}
                 {submitStatus === "success" && (
                   <div className="p-4 bg-green-50 border border-green-200 rounded text-green-800 text-sm">
-                    ✓ Mensagem enviada com sucesso! Responderei em breve.
+                    ✓ Message enviada com sucesso! Responderei em breve.
                   </div>
                 )}
 
@@ -205,11 +205,11 @@ export default function Contact() {
                   size="lg"
                 >
                   {isSubmitting ? (
-                    "Enviando..."
+                    "Sending..."
                   ) : (
                     <>
                       <Send className="h-5 w-5 mr-2" />
-                      Enviar mensagem
+                      Send mensagem
                     </>
                   )}
                 </Button>
