@@ -1,4 +1,4 @@
-import { mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { mysqlEnum, mysqlTable, text, timestamp, varchar, int } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -52,3 +52,27 @@ export const posts = mysqlTable("posts", {
 
 export type Post = typeof posts.$inferSelect;
 export type InsertPost = typeof posts.$inferInsert;
+
+/**
+ * Reviews table for films, albums, and books
+ * Supports integration with TMDb, Last.fm, and Google Books APIs
+ */
+export const reviews = mysqlTable("reviews", {
+  id: varchar("id", { length: 64 }).primaryKey(),
+  type: mysqlEnum("type", ["film", "album", "book"]).notNull(),
+  title: text("title").notNull(),
+  creator: text("creator"), // Director, Artist, or Author
+  year: int("year"),
+  rating: int("rating").notNull(), // 1-5
+  notes: text("notes"),
+  tags: text("tags"), // JSON array of tags
+  coverImage: text("coverImage"),
+  apiId: varchar("apiId", { length: 255 }), // ID from external API
+  metadata: text("metadata"), // JSON with additional data from APIs
+  createdAt: timestamp("createdAt").defaultNow(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
+  userId: varchar("userId", { length: 64 }),
+});
+
+export type Review = typeof reviews.$inferSelect;
+export type InsertReview = typeof reviews.$inferInsert;

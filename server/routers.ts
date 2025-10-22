@@ -3,6 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { adminRouter } from "./adminRouter";
+import { reviewsRouter } from "./reviewsRouter";
 
 export const appRouter = router({
   system: systemRouter,
@@ -19,6 +20,7 @@ export const appRouter = router({
   }),
 
   admin: adminRouter,
+  reviews: reviewsRouter,
 
   // TODO: add feature routers here, e.g.
   // todo: router({

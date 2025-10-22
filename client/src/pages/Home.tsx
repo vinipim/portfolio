@@ -44,7 +44,7 @@ export default function Home() {
         <div 
           className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary/70"
           style={{
-            backgroundImage: "url('/images/hero-library.jpg')",
+            backgroundImage: "url('/images/art/friedrich-wanderer.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundBlendMode: "overlay",
