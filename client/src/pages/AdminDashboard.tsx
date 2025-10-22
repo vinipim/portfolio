@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation as useWouterLocation } from "wouter";
 import AdminMedia from "./AdminMedia";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,7 @@ import {
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
   const [, setLocation] = useLocation();
+  const [, setWouterLocation] = useWouterLocation();
 
   const handleLogout = () => {
     // Clear admin session
@@ -170,7 +172,10 @@ export default function AdminDashboard() {
                 <h2 className="text-2xl font-bold">Posts</h2>
                 <p className="text-muted-foreground">Manage your blog posts and articles</p>
               </div>
-              <Button className="bg-[#C9A961] hover:bg-[#B8984F]">
+              <Button 
+                className="bg-[#C9A961] hover:bg-[#B8984F]"
+                onClick={() => setWouterLocation("/admin/posts/new")}
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 New Post
               </Button>
@@ -184,7 +189,10 @@ export default function AdminDashboard() {
                   <p className="text-muted-foreground mb-4 max-w-md mx-auto">
                     Create, edit, and publish posts. All changes are reflected immediately on the site.
                   </p>
-                  <Button className="bg-[#C9A961] hover:bg-[#B8984F]">
+                  <Button 
+                    className="bg-[#C9A961] hover:bg-[#B8984F]"
+                    onClick={() => setWouterLocation("/admin/posts/new")}
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Create Your First Post
                   </Button>
@@ -200,7 +208,10 @@ export default function AdminDashboard() {
                 <h2 className="text-2xl font-bold">Reviews</h2>
                 <p className="text-muted-foreground">Manage your film, book, and album reviews</p>
               </div>
-              <Button className="bg-[#C9A961] hover:bg-[#B8984F]">
+              <Button 
+                className="bg-[#C9A961] hover:bg-[#B8984F]"
+                onClick={() => setWouterLocation("/admin/reviews/new")}
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 New Review
               </Button>
@@ -217,7 +228,11 @@ export default function AdminDashboard() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-3xl font-bold mb-4">0</p>
-                  <Button variant="outline" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => setWouterLocation("/admin/reviews/new")}
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Film Review
                   </Button>
@@ -234,7 +249,11 @@ export default function AdminDashboard() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-3xl font-bold mb-4">0</p>
-                  <Button variant="outline" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => setWouterLocation("/admin/reviews/new")}
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Book Review
                   </Button>
@@ -251,7 +270,11 @@ export default function AdminDashboard() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-3xl font-bold mb-4">0</p>
-                  <Button variant="outline" className="w-full">
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => setWouterLocation("/admin/reviews/new")}
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Album Review
                   </Button>

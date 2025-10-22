@@ -12,6 +12,8 @@ import Archive from "./pages/Archive";
 import Contact from "./pages/Contact";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminPostEditor from "./pages/AdminPostEditor";
+import AdminReviewEditor from "./pages/AdminReviewEditor";
 import Books from "./pages/Books";
 import Films from "./pages/Films";
 import Audio from "./pages/Audio";
@@ -33,6 +35,10 @@ function Router() {
       <Route path="/video" component={Video} />
       <Route path="/admin" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
+      <Route path="/admin/posts/new" component={AdminPostEditor} />
+      <Route path="/admin/posts/edit/:slug" component={AdminPostEditor} />
+      <Route path="/admin/reviews/new" component={AdminReviewEditor} />
+      <Route path="/admin/reviews/edit/:id" component={AdminReviewEditor} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
