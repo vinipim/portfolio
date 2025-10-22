@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation as useWouterLocation } from "wouter";
 import AdminMedia from "./AdminMedia";
+import VideoUpload from "@/components/VideoUpload";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -285,33 +286,12 @@ export default function AdminDashboard() {
 
           {/* Videos Tab */}
           <TabsContent value="videos" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-bold">Videos</h2>
-                <p className="text-muted-foreground">Upload and manage your video content (hosted locally)</p>
-              </div>
-              <Button className="bg-[#C9A961] hover:bg-[#B8984F]">
-                <Upload className="w-4 h-4 mr-2" />
-                Upload Video
-              </Button>
+            <div>
+              <h2 className="text-2xl font-bold mb-2">Videos</h2>
+              <p className="text-muted-foreground">Upload and manage your video content (hosted locally)</p>
             </div>
-
-            <Card>
-              <CardContent className="pt-6">
-                <div className="border-2 border-dashed rounded-lg p-12 text-center">
-                  <Film className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">No videos uploaded</h3>
-                  <p className="text-muted-foreground mb-4 max-w-md mx-auto">
-                    Upload videos to display in your archive. Videos are hosted locally for maximum privacy.
-                    Supported formats: MP4, WebM, MOV
-                  </p>
-                  <Button className="bg-[#C9A961] hover:bg-[#B8984F]">
-                    <Upload className="w-4 h-4 mr-2" />
-                    Upload Your First Video
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            
+            <VideoUpload />
           </TabsContent>
 
           {/* Media Tab */}
