@@ -32,7 +32,7 @@ export default function Footer() {
               </a>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Law student & politics enthusiast
+              Politics enthusiast
             </p>
           </div>
 
@@ -55,7 +55,7 @@ export default function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-wider">Contact</h3>
             <div className="flex flex-col gap-3 text-sm text-muted-foreground">
               <p className="text-xs">
-                © {currentYear} Vinicius M. Blanchard. All rights reserved.
+                © {currentYear} VMB. All rights reserved.
               </p>
               <p className="text-xs opacity-70">
                 Privacy-focused • Secure • Independent
