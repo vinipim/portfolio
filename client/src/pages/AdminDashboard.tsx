@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AdminMedia from "./AdminMedia";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -292,16 +293,7 @@ export default function AdminDashboard() {
 
           {/* Media Tab */}
           <TabsContent value="media" className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-2xl font-bold">Media Library</h2>
-                <p className="text-muted-foreground">Manage images and files</p>
-              </div>
-              <Button className="bg-[#C9A961] hover:bg-[#B8984F]">
-                <Upload className="w-4 h-4 mr-2" />
-                Upload Files
-              </Button>
-            </div>
+            <AdminMedia />
 
             <Card>
               <CardHeader>
