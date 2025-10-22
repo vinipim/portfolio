@@ -2,33 +2,30 @@ import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import Layout from "../components/Layout";
 import PostCard from "../components/PostCard";
-import { getAllPosts, type Post } from "../lib/posts";
+import { trpc } from "@/lib/trpc";
+import type { Post } from "../lib/posts";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
-  const [loadingPosts, setLoadingPosts] = useState(true);
+
+  const { data: allPosts = [], isLoading: loadingPosts } = trpc.posts.getAll.useQuery();
 
   useEffect(() => {
-    const loadPosts = async () => {
-      const posts = await getAllPosts();
+    if (allPosts.length > 0) {
       // Get featured posts or latest 3
-      const featured = posts
-        .filter((p: any) => p.featured)
+      const featured = allPosts
+        .filter((p: any) => p.featured === "yes")
         .slice(0, 3);
       
       if (featured.length < 3) {
-        const latest = posts.slice(0, 3);
-        setFeaturedPosts(latest);
+        const latest = allPosts.slice(0, 3);
+        setFeaturedPosts(latest as any);
       } else {
-        setFeaturedPosts(featured);
+        setFeaturedPosts(featured as any);
       }
-      
-      setLoadingPosts(false);
-    };
-
-    loadPosts();
-  }, []);
+    }
+  }, [allPosts]);
 
   return (
     <Layout>

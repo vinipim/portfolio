@@ -150,10 +150,7 @@ export default function AdminDashboard() {
                   <span className="text-muted-foreground">Site Title:</span>
                   <span className="font-medium">Blanchard, V.</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Admin Email:</span>
-                  <span className="font-medium">danielblanchard@keemail.me</span>
-                </div>
+
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Copyright:</span>
                   <span className="font-medium">© {new Date().getFullYear()} VMB. All rights reserved.</span>
@@ -377,14 +374,7 @@ export default function AdminDashboard() {
                 <CardDescription>Manage your admin credentials</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium">Email</label>
-                  <input 
-                    type="email" 
-                    className="w-full mt-1 px-3 py-2 border rounded-md bg-background"
-                    defaultValue="danielblanchard@keemail.me"
-                  />
-                </div>
+
                 <div>
                   <label className="text-sm font-medium">New Password</label>
                   <input 

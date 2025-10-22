@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
+import { trpc } from "@/lib/trpc";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Save, Eye } from "lucide-react";
@@ -59,21 +61,33 @@ export default function AdminPostEditor() {
     });
   };
 
+  const createPostMutation = trpc.posts.create.useMutation();
+
   const handleSave = async (status: "draft" | "published") => {
+    // Validate required fields
+    if (!formData.title || !formData.slug || !formData.content || !formData.excerpt) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
     setSaving(true);
     
     try {
-      // TODO: Save to database via TRPC
-      console.log("Saving post:", { ...formData, status });
+      await createPostMutation.mutateAsync({
+        title: formData.title,
+        slug: formData.slug,
+        excerpt: formData.excerpt,
+        content: formData.content,
+        coverImage: formData.coverImage,
+        category: formData.category,
+        featured: formData.featured ? "yes" : "no",
+      });
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      alert(`Post ${status === "published" ? "published" : "saved as draft"} successfully!`);
+      toast.success(`Post ${status === "published" ? "published" : "saved"} successfully!`);
       setLocation("/admin/dashboard");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error saving post:", error);
-      alert("Failed to save post. Please try again.");
+      toast.error(error.message || "Failed to save post. Please try again.");
     } finally {
       setSaving(false);
     }

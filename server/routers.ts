@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { adminRouter } from "./adminRouter";
 import { reviewsRouter } from "./reviewsRouter";
+import { postsRouter } from "./postsRouter";
 
 export const appRouter = router({
   system: systemRouter,
@@ -21,6 +22,7 @@ export const appRouter = router({
 
   admin: adminRouter,
   reviews: reviewsRouter,
+  posts: postsRouter,
 
   // TODO: add feature routers here, e.g.
   // todo: router({
